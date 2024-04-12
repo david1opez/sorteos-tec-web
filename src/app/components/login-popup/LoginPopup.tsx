@@ -1,3 +1,5 @@
+import SignInWithGoogle from '../../firebase/SignInWithGoogle'
+
 // STYLES
 import styles from './login-popup.module.css'
 
@@ -14,8 +16,8 @@ export default function LoginPopup({onClose}: {onClose: () => void}) {
                     si aún no haz creado una cuenta.
                 </p>
                 
-                <input type="text" placeholder="Correo electrónico"/>
-                <input type="text" placeholder="Contraseña"/>
+                <input type="text" placeholder="Correo electrónico" className={styles.input}/>
+                <input type="text" placeholder="Contraseña" className={styles.input}/>
 
                 <a className={styles.forgotPassword}>¿Olvidaste tu contraseña?</a>
 
@@ -28,13 +30,13 @@ export default function LoginPopup({onClose}: {onClose: () => void}) {
                     <div className={styles.line}></div>
                 </div>
 
-                <button>
+                <button className={styles.googleLogin} onClick={() => SignInWithGoogle()}>
                     <Icon icon='google' className={styles.icon}/>
                     <p className={styles.text}>Continuar con Google</p>
                 </button>
 
-                <button>
-                    {/* <Icon icon='facebook' className={styles.icon}/> */}
+                <button className={styles.facebookLogin}>
+                    <Icon icon='facebook' className={styles.icon}/>
                     <p className={styles.text}>Continuar con Facebook</p>
                 </button>
             </div>
