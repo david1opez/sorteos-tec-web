@@ -116,7 +116,25 @@ const icons: Icon = {
                 strokeWidth: 0,
             }
         ]
+    },
+    'close': {
+        viewBox: '0 0 10 10',
+        paths: [
+            {
+                data: "M1 1L9 9",
+                strokeWidth: 1.5,
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+            },
+            {
+                data: "M1 9L9 1",
+                strokeWidth: 1.5,
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+            }
+        ]
     }
+
 };
 
 export default icons;

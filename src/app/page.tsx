@@ -31,7 +31,10 @@ export default function Home() {
       <Navbar onLogin={() => setShowLoginPopup(true)}/>
       {
         showLoginPopup && (
-          <LoginPopup onClose={() => setShowLoginPopup(false)}/>
+          <LoginPopup
+            onClose={() => setShowLoginPopup(false)}
+            // onRegister={() => setShowRegisterPopup(true)}
+          />
         )
       }
     </main>

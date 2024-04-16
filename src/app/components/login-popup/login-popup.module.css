@@ -18,16 +18,33 @@
     padding: 6vh 1.5vw;
 }
 
+.closeButtonContainer {
+    width: 100%;
+}
+
+.closeButton {
+    display: flex;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.closeIcon {
+    width: 1.1vw;
+    height: 1.1vw;
+}
+
 .title {
     font-size: 1.5vw;
     color: var(--primary);
-    margin-bottom: -4vh
+    margin-top: -6vh;
+    margin-bottom: -4vh;
 }
 
 .description {
-    font-size: 0.96vw;
+    font-size: 0.95vw;
     color: var(--primary);
-    margin-top: -4vh;
+    margin-top: -9vh;
 }
 
 .input {
@@ -37,7 +54,7 @@
     font-size: 0.9vw;
     padding: 1.8vh 1vw;
     width: 100%;
-    margin-top: -7vh;
+    margin-top: -6vh;
 }
 
 .forgotPassword {
@@ -46,7 +63,7 @@
     text-decoration-line: underline;
     color: var(--primary);
     font-size: 0.87vw;
-    margin-top: -8vh;
+    margin-top: -6vh;
 }
 
 .registerButton, .loginButton {
@@ -57,7 +74,8 @@
     font-weight: 600;
     font-size: 0.75vw;
     padding: 2vh 0;
-    margin-top: -12vh;
+    margin-top: -8vh;
+    cursor: pointer;
 }
 .registerButton {
     margin-right: 4%;
@@ -75,7 +93,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: -10vh;
+    margin-top: -7vh;
 }
 
 .divider .line {
@@ -109,12 +127,12 @@
 }
 
 .googleLogin {
-    margin-top: -14vh;
+    margin-top: -10vh;
 }
 
 .facebookLogin {
     background-color: var(--facebook-blue);
-    margin-top: -15vh;
+    margin-top: -10.5vh;
 }
 
 .googleLogin p, .facebookLogin p {
