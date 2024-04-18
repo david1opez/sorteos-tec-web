@@ -1,0 +1,14 @@
+.input {
+    outline: none;
+    border-radius: 9px;
+    border: 1px solid var(--gray);
+    font-size: 0.9vw;
+    padding: 1.8vh 1vw;
+    width: 100%;
+}
+
+.disabled {
+    background: var(--gray);
+    color: var(--lightGray);
+    cursor: default;
+}

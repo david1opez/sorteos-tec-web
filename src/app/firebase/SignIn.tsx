@@ -21,12 +21,9 @@ export async function SignInWithGoogle() {
 
     const auth = getAuth();
 
-    signInWithPopup(auth, provider)
-    .then((result) => {
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        const user = result.user;
-    }).catch((error) => {
+    return signInWithPopup(auth, provider)
+    .then((result) => result.user.uid)
+    .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
         const email = error.customData.email;
@@ -39,12 +36,8 @@ export async function SignInWithFacebook() {
 
     const auth = getAuth();
 
-    signInWithPopup(auth, provider)
-    .then((result) => {
-        const credential = FacebookAuthProvider.credentialFromResult(result);
-        const token = credential?.accessToken;
-        const user = result.user;
-    })
+    return signInWithPopup(auth, provider)
+    .then((result) => result.user.uid)
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;

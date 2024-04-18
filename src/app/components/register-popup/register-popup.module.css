@@ -1,0 +1,56 @@
+.background {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: #020614da
+}
+
+.popup {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    position: absolute;
+    background-color: var(--offwhite);
+    width: 30vw;
+    height: 85vh;
+    padding: 3vh 1.5vw;
+    border-radius: 15px;
+}
+
+.closeButtonContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+.closeButton {
+    display: flex;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.closeIcon {
+    width: 1.2vw;
+    height: 1.2vw;
+}
+
+.title {
+    color: var(--primary);
+}
+
+.subtitle {
+    color: var(--primary);
+    font-size: 0.9vw;
+}
+
+.lastnameInput1, .lastnameInput2 {
+    width: 48%;
+}
+
+.lastnameInput1 {
+    margin-right: 1vw;
+}

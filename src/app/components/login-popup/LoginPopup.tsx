@@ -3,10 +3,20 @@ import { SignInWithGoogle, SignInWithFacebook } from '../../firebase/SignIn'
 // STYLES
 import styles from './login-popup.module.css'
 
-// COMPONENETS
+// COMPONENTS
 import Icon from '../icon/Icon'
 
-export default function LoginPopup({onClose}: {onClose: () => void}) {
+export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () => void, onLogin: (uid: string | undefined) => void, onRegister: () => void}) {
+    async function SignInWith(provider: 'email' | 'google' | 'facebook') {
+        if (provider === 'google') {
+            const uid = await SignInWithGoogle();
+            if(uid) onLogin(uid);
+        } else if (provider === 'facebook') {
+            const uid = await SignInWithFacebook();
+            if(uid) onLogin(uid);
+        }
+    }
+
     return (
         <div className={styles.background}>
             <div className={styles.popup}>
@@ -26,7 +36,12 @@ export default function LoginPopup({onClose}: {onClose: () => void}) {
 
                 <a className={styles.forgotPassword}>¿Olvidaste tu contraseña?</a>
 
-                <button className={styles.registerButton}>REGISTRATE</button>
+                <button 
+                    className={styles.registerButton}
+                    onClick={() => onRegister()}
+                >
+                    REGISTRATE
+                </button>
                 <button className={styles.loginButton}>INICAR SESIÓN</button>
 
                 <div className={styles.divider}>
@@ -35,12 +50,12 @@ export default function LoginPopup({onClose}: {onClose: () => void}) {
                     <div className={styles.line}></div>
                 </div>
 
-                <button className={styles.googleLogin} onClick={() => SignInWithGoogle()}>
+                <button className={styles.googleLogin} onClick={() => SignInWith('google')}>
                     <Icon icon='google' className={styles.icon}/>
                     <p className={styles.text}>Continuar con Google</p>
                 </button>
 
-                <button className={styles.facebookLogin} onClick={() => SignInWithFacebook()}>
+                <button className={styles.facebookLogin} onClick={() => SignInWith('facebook')}>
                     <Icon icon='facebook' className={styles.icon}/>
                     <p className={styles.text}>Continuar con Facebook</p>
                 </button>

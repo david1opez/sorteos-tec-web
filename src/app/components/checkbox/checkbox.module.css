@@ -1,0 +1,18 @@
+.container {
+    display: flex;
+}
+
+.checkbox {
+    cursor: pointer;
+    border: 1px solid var(--primary);
+    width: 1vw;
+    height: 1vw;
+}
+
+.checkedChecbox {}
+
+.label {
+    color: var(--primary);
+    font-size: 0.8vw;
+    font-weight: 600;
+}
