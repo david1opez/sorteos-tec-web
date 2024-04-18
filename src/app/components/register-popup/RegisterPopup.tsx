@@ -30,69 +30,77 @@ export default function LoginPopup({registerWithProvider, onClose, onRegister, o
                     label="Confirmo que soy mayor de 18 años"
                 />
 
-                <TextInput
-                    placeholder="Nombre"
-                    type="text"
-                />
+                <div className={styles.inputsContainer}>
+                    <TextInput
+                        placeholder="Nombre"
+                        type="text"
+                        style={styles.inputMargin}
+                    />
 
-                <TextInput
-                    placeholder="Apellido paterno"
-                    type="text"
-                    style={styles.lastnameInput1}
-                />
-                <TextInput
-                    placeholder="Apellido materno"
-                    type="text"
-                    style={styles.lastnameInput2}
-                />
+                    <TextInput
+                        placeholder="Apellido paterno"
+                        type="text"
+                        style={`${styles.lastnameInput1} ${styles.inputMargin}`}
+                    />
+                    <TextInput
+                        placeholder="Apellido materno"
+                        type="text"
+                        style={`${styles.lastnameInput2} ${styles.inputMargin}`}
+                    />
 
-                {
-                    !registerWithProvider && (
-                        <TextInput
-                            placeholder="Correo electrónico"
-                            type="e-mail"
-                        />
-                    )
-                }
+                    {
+                        !registerWithProvider && (
+                            <TextInput
+                                placeholder="Correo electrónico"
+                                type="e-mail"
+                                style={styles.inputMargin}
+                            />
+                        )
+                    }
 
-                <TextInput
-                    placeholder="Teléfono móvil"
-                    type="text"
-                />
+                    <TextInput
+                        placeholder="Teléfono móvil"
+                        type="text"
+                        style={styles.inputMargin}
+                    />
 
-                {/* <Dropdown
-                    placeholder="Selecciona un país"
-                    options={countries}
-                    onSelectOption={(option) => setCountry(option)}
-                />
+                    {/* <Dropdown
+                        placeholder="Selecciona un país"
+                        options={countries}
+                        onSelectOption={(option) => setCountry(option)}
+                    />
 
-                <Dropdown
-                    placeholder="Selecciona un estado"
-                    options={states}
-                    onSelectOption={(option) => setState(option)}
-                /> */}
+                    <Dropdown
+                        placeholder="Selecciona un estado"
+                        options={states}
+                        onSelectOption={(option) => setState(option)}
+                    /> */}
 
-                {
-                    !registerWithProvider && (
-                        <TextInput
-                            placeholder="Contraseña"
-                            type="password"
-                        />
-                    )
-                }
+                    {
+                        !registerWithProvider && (
+                            <TextInput
+                                placeholder="Contraseña"
+                                type="password"
+                                style={styles.inputMargin}
+                            />
+                        )
+                    }
 
-                {
-                    !registerWithProvider && (
-                        <TextInput
-                            placeholder="Confirma tu contraseña"
-                            type="password"
-                        />
-                    )
-                }
+                    {
+                        !registerWithProvider && (
+                            <TextInput
+                                placeholder="Confirma tu contraseña"
+                                type="password"
+                                style={styles.inputMargin}
+                            />
+                        )
+                    }
+                </div>
 
                 <Checkbox
                     onCheck={() => {}}
                     label="Confirmo que los datos ingresados son iguales a los de mi INE."
+                    style={styles.checkboxMargin}
                 />
 
                 <Checkbox

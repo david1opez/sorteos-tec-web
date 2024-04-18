@@ -3,13 +3,25 @@
 }
 
 .checkbox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
     border: 1px solid var(--primary);
     width: 1vw;
     height: 1vw;
+    border-radius: 100px;
+    margin-right: 0.5vw;
 }
 
-.checkedChecbox {}
+.checkedCheckbox::after {
+    content: '';
+    position: absolute;
+    background: var(--primary);
+    width: 0.55vw;
+    height: 0.55vw;
+    border-radius: 10px;
+}
 
 .label {
     color: var(--primary);
