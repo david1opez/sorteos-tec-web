@@ -54,7 +54,7 @@ export default function Navbar({onLogin}: {onLogin: () => void}) {
             )
           }
 
-          {
+          {/* {
             user && (
               <Dropdown
                 button={() => (
@@ -86,7 +86,7 @@ export default function Navbar({onLogin}: {onLogin: () => void}) {
                 )}
               />
             )
-          }
+          } */}
   
        </div>
       </nav>
