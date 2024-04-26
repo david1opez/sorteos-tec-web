@@ -26,7 +26,7 @@ export default function Home() {
   }, []);
 
   const [showLoginPopup, setShowLoginPopup] = useState(false);
-  const [showRegisterPopup, setShowRegisterPopup] = useState(false);
+  const [showRegisterPopup, setShowRegisterPopup] = useState<{uid: string, email: string}|'register'|undefined>();
 
   return (
     <main className={styles.main}>
@@ -35,23 +35,28 @@ export default function Home() {
         showLoginPopup ? (
           <LoginPopup
             onClose={() => setShowLoginPopup(false)}
-            onLogin={(uid) => {
-              setShowLoginPopup(false);
+            onLogin={(result) => {
+              if(result.isNewUser) {
+                setShowLoginPopup(false);
+                setShowRegisterPopup({uid: result.uid, email: result.email});
+              } else {
+                setShowLoginPopup(false);
+              }
             }}
             onRegister={() => {
               setShowLoginPopup(false);
-              setShowRegisterPopup(true);
+              setShowRegisterPopup('register');
             }}
           />
-        ) : showRegisterPopup && (
+        )
+        : showRegisterPopup && (
           <RegisterPopup
-            onClose={() => setShowRegisterPopup(false)}
-            onRegister={(uid) => {
-              setShowRegisterPopup(false);
-            }}
-            onLogin={() => {
-              setShowRegisterPopup(false);
-              setShowLoginPopup(true);
+            registerWithProvider={showRegisterPopup === 'register' ? undefined : showRegisterPopup}
+            onClose={() => setShowRegisterPopup(undefined)}
+            onRegister={(uid) => {                            
+              if(uid) {
+                setShowRegisterPopup(undefined);
+              }
             }}
           />
         )

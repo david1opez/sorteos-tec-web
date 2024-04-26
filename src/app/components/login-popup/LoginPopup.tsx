@@ -6,7 +6,7 @@ import styles from './login-popup.module.css'
 // COMPONENTS
 import Icon from '../icon/Icon'
 
-export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () => void, onLogin: (uid: string | undefined) => void, onRegister: () => void}) {
+export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () => void, onLogin: (result: {uid: string, isNewUser: boolean, email: string}) => void, onRegister: () => void}) {
     async function SignInWith(provider: 'email' | 'google' | 'facebook') {
         if (provider === 'google') {
             const uid = await SignInWithGoogle();
@@ -53,11 +53,6 @@ export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () 
                 <button className={styles.googleLogin} onClick={() => SignInWith('google')}>
                     <Icon icon='google' className={styles.icon}/>
                     <p className={styles.text}>Continuar con Google</p>
-                </button>
-
-                <button className={styles.facebookLogin} onClick={() => SignInWith('facebook')}>
-                    <Icon icon='facebook' className={styles.icon}/>
-                    <p className={styles.text}>Continuar con Facebook</p>
                 </button>
             </div>
         </div>

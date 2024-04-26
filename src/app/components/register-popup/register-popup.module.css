@@ -72,3 +72,37 @@
 .checkboxMargin {
     margin-bottom: 2vh;
 }
+
+.registerButton {
+    background-color: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+    border: none;
+    outline: none;
+    font-size: 0.8vw;
+    padding: 1vw 0vw 0.9vw 0vw;
+    width: 100%;
+    margin-top: 2vw;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.icon {
+    width: 1.2vw;
+    height: 1.2vw;
+    margin-right: 1vw;
+}
+
+.googleLogin, .facebookLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--white);
+    border: none;
+    border-radius: 7px;
+    outline: none;
+    width: 100%;
+    padding: 2vh 0;
+    cursor: pointer;
+    margin-top: 1vw;
+}

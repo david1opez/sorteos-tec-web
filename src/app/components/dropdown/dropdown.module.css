@@ -1,8 +1,40 @@
-.dropdown {}
+.dropdownContainer {
+    width: 48%;
+}
 
-.dropdown button {
+.dropdownButton {
     outline: none;
     border: none;
     background: none;
     cursor: pointer;
+    font-size: 0.9vw;
+    padding: 1vw;
+    background-color: var(--white);
+    color: var(--dark-gray);
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+    margin-bottom: 0.6vw;
+    width: 100%;
+    text-align: left;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1vw;
+    margin-bottom: 1vw;
+    background-color: var(--white);
+    border-radius: 10px;
+    padding-bottom: 0.3vw;
+}
+
+.optionButton {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-align: center;
+    padding: 0.5vw 0;
+    border-bottom: 1px solid var(--gray);
+    font-size: 0.9vw;
 }

@@ -10,7 +10,10 @@ export default function Checkbox({label, onCheck, style}: {label: string, onChec
         <div className={`${styles.container} ${style && style}`}>
             <button
                 className={`${styles.checkbox} ${checked && styles.checkedCheckbox}`}
-                onClick={() => setChecked(!checked)}    
+                onClick={() => {
+                    setChecked(!checked);
+                    onCheck();
+                }}  
             />
             <p className={styles.label}>{label}</p>
         </div>

@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, getAdditionalUserInfo, createUserWithEmailAndPassword  } from "firebase/auth";
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -22,12 +22,19 @@ export async function SignInWithGoogle() {
     const auth = getAuth();
 
     return signInWithPopup(auth, provider)
-    .then((result) => result.user.uid)
+    .then((result) => {
+        const additionalUserInfo = getAdditionalUserInfo(result)
+
+        return {
+            uid: result.user.uid || "",
+            isNewUser: additionalUserInfo?.isNewUser || false,
+            email: result.user.email || ""
+        }
+    })
     .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = GoogleAuthProvider.credentialFromError(error);
+
+        alert(errorMessage);
     });
 }
 
@@ -37,11 +44,34 @@ export async function SignInWithFacebook() {
     const auth = getAuth();
 
     return signInWithPopup(auth, provider)
-    .then((result) => result.user.uid)
+    .then((result) => {
+        const additionalUserInfo = getAdditionalUserInfo(result)
+
+        return {
+            uid: result.user.uid || "",
+            isNewUser: additionalUserInfo?.isNewUser || false,
+            email: result.user.email || ""
+        }
+    })
     .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
-        const email = error.customData.email;
-        const credential = FacebookAuthProvider.credentialFromError(error);
+
+        alert(errorMessage);
+    });
+}
+
+export async function SignInWithEmail(email: string, password: string) {
+    const auth = getAuth();
+    
+    return await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+
+        return user.uid;
+    })
+    .catch((error) => {
+        const errorMessage = error.message;
+
+        alert(errorMessage);
     });
 }
