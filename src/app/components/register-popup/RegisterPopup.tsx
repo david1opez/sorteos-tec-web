@@ -19,8 +19,6 @@ export default function LoginPopup({registerWithProvider, onClose, onRegister}: 
         pais: "",
         estado: "",
         correo_electronico: registerWithProvider?.email ? registerWithProvider.email : "",
-        dias_conectados: "0",
-        ultima_conexion: "",
         telefono: "",
         contraseña: "",
         confirmarContraseña: "",
@@ -85,6 +83,9 @@ export default function LoginPopup({registerWithProvider, onClose, onRegister}: 
 
             delete userData.contraseña;
             delete userData.confirmarContraseña;
+            delete userData.mayorDeEdad;
+            delete userData.INE;
+            delete userData.terminosYCondiciones;
 
             fetch('https://sorteos-tec-api.vercel.app/crearUsuario', {
                 method: 'POST',

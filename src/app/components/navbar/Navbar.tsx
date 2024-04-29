@@ -9,8 +9,8 @@ import Icon from '../icon/Icon';
 // STYLES
 import styles from "./navbar.module.css";
 
-export default function Navbar({onLogin}: {onLogin: () => void}) {
-    const [user, setUser] = useState<{balance: number, name: string}|null>(null);
+export default function Navbar({onLogin}: {onLogin?: () => void}) {
+    const [user, setUser] = useState<{balance: number, name: string}|null>({balance: 0, name: 'David Lopez'});
     const [bannerTextIndex, setBannerTextIndex] = useState<number>(0);
   
     const BannerTexts = [
@@ -47,14 +47,14 @@ export default function Navbar({onLogin}: {onLogin: () => void}) {
         <div className={styles.bottom_navbar}>
           {
             !user && (
-              <button onClick={() => onLogin()} className={styles.login}>
+              <button onClick={() => onLogin && onLogin()} className={styles.login}>
                 <Icon icon="user" color="#1b3589" className={styles.wallet_icon}/>
                 <p className={styles.text}>Iniciar Sesión</p>
               </button>
             )
           }
 
-          {/* {
+          {
             user && (
               <Dropdown
                 button={() => (
@@ -64,7 +64,26 @@ export default function Navbar({onLogin}: {onLogin: () => void}) {
                   </div>
                 )}
                 dropdown={() => (
-                  <div className={styles.balance_dropdown}>
+                  <div className={styles.balanceDropdown}>
+                    <div className={styles.row}>
+                      <p className={styles.topRowText}>Mi saldo actual</p>
+                      <p className={styles.topRowText}>$0.00</p>
+                    </div>
+
+                    <div className={styles.divider}></div>
+
+                    <div className={styles.row}>
+                      <p className={styles.rowText}>Saldo abonado</p>
+                      <p className={styles.rowText}>$0.00</p>
+                    </div>
+
+                    <div className={styles.row}>
+                      <p className={styles.rowText}>Premios por cobrar</p>
+                      <p className={styles.rowText}>$0.00</p>
+                    </div>
+
+                    <button className={styles.button1}>Mi E-Wallet</button>
+                    <button className={styles.button2}>Abonar saldo</button>
                   </div>
                 )}
               />
@@ -73,20 +92,12 @@ export default function Navbar({onLogin}: {onLogin: () => void}) {
 
           {
             user && (
-              <Dropdown
-                button={() => (
-                  <div className={styles.profile}>
-                    <p className={styles.text}>{user.name}</p>
-                    <Icon icon="user" color='#1b3589' className={styles.profile_icon}/>
-                  </div>
-                )}
-                dropdown={() => (
-                  <div className={styles.profile_dropdown}>
-                  </div>
-                )}
-              />
+              <button className={styles.profile}>
+                  <p className={styles.text}>{user.name}</p>
+                  <Icon icon="user" color='#1b3589' className={styles.profile_icon}/>
+              </button>
             )
-          } */}
+          }
   
        </div>
       </nav>

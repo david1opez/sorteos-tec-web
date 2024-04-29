@@ -1,0 +1,66 @@
+.main {
+    background-color: #00214E;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.balanceContainer {
+    display: flex;
+    position: absolute;
+    top: 22vh;
+    left: 2vw;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border: 2px solid var(--white);
+    border-radius: 50px;
+    cursor: pointer;
+    padding: 0.6vw 1vw 0.35vw 1vw;
+    margin-right: 1vw;
+    letter-spacing: 1px;
+    font-size: 1.5vw;
+}
+
+.backButton {
+    position: absolute;
+    top: 22vh;
+    right: 2vw;
+}
+
+.balanceIcon {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 0.2vw;
+}
+
+.text {
+    color: var(--white);
+    margin-left: 0.3vw;
+}
+
+.returnIcon {
+    width: 25px;
+    height: 25px;
+    margin-bottom: 0.3vw;
+}
+
+.title {
+    color: var(--white);
+    font-size: 8vw;
+    text-align: center;
+    margin: 7vh 0 3vh 0;
+    letter-spacing: 4px;
+}
+
+.cardsContainer {
+    display: flex;
+    width: 100%;
+    padding: 0 22vw;
+    height: 45vh;
+    justify-content: space-between;
+    align-items: center;
+}
