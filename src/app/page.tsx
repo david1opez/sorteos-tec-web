@@ -1,7 +1,7 @@
 "use client"
 import { useState, useEffect } from "react";
 import { auth } from './firebase/SignIn';
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, signOut } from "firebase/auth";
 
 // COMPONENTS
 import Navbar from "./components/navbar/Navbar";
@@ -32,6 +32,8 @@ export default function Home() {
   } 
 
   useEffect(() => {
+    signOut(auth);
+
     onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
         console.log(user?.uid);
