@@ -1,7 +1,5 @@
 "use client"
-import { useState, useEffect } from "react";
 import { Unity, useUnityContext } from "react-unity-webgl";
-import { onAuthStateChanged } from "firebase/auth";
 
 // COMPONENTS
 import Navbar from "../components/navbar/Navbar";

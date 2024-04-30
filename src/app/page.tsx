@@ -20,7 +20,6 @@ export default function Home() {
     codeUrl: "/plinko/build.wasm",
   });
   
-  const [users, setUsers] = useState<any[]>([]);
   const [user, setUser] = useState<any>();
 
   const callAPI = async () => {
@@ -41,8 +40,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    callAPI().then((data) => setUsers(data));
-
     onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
         console.log(user?.uid);
