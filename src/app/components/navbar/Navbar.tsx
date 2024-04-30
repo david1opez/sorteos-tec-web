@@ -9,8 +9,7 @@ import Icon from '../icon/Icon';
 // STYLES
 import styles from "./navbar.module.css";
 
-export default function Navbar({onLogin}: {onLogin?: () => void}) {
-    const [user, setUser] = useState<{balance: number, name: string}|null>({balance: 0, name: 'David Lopez'});
+export default function Navbar({info, onLogin}: {info: any, onLogin?: () => void}) {
     const [bannerTextIndex, setBannerTextIndex] = useState<number>(0);
   
     const BannerTexts = [
@@ -46,7 +45,7 @@ export default function Navbar({onLogin}: {onLogin?: () => void}) {
   
         <div className={styles.bottom_navbar}>
           {
-            !user && (
+            !info && (
               <button onClick={() => onLogin && onLogin()} className={styles.login}>
                 <Icon icon="user" color="#1b3589" className={styles.wallet_icon}/>
                 <p className={styles.text}>Iniciar Sesión</p>
@@ -55,11 +54,11 @@ export default function Navbar({onLogin}: {onLogin?: () => void}) {
           }
 
           {
-            user && (
+            info && (
               <Dropdown
                 button={() => (
                   <div className={styles.wallet}>
-                    <p className={styles.text}>${user.balance.toFixed(2)}</p>
+                    <p className={styles.text}>${0.00}</p>
                     <Icon icon="coin" color="#1b3589" className={styles.wallet_icon}/>
                   </div>
                 )}
@@ -91,9 +90,9 @@ export default function Navbar({onLogin}: {onLogin?: () => void}) {
           }
 
           {
-            user && (
+            info && (
               <button className={styles.profile}>
-                  <p className={styles.text}>{user.name}</p>
+                  <p className={styles.text}>{info.nombre} {info.apellidoPaterno}</p>
                   <Icon icon="user" color='#1b3589' className={styles.profile_icon}/>
               </button>
             )

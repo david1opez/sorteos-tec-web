@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, getAdditionalUserInfo, createUserWithEmailAndPassword  } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, FacebookAuthProvider, getAdditionalUserInfo, createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -15,11 +15,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+export const auth = getAuth();
 
 export async function SignInWithGoogle() {
     const provider = new GoogleAuthProvider();
-
-    const auth = getAuth();
 
     return signInWithPopup(auth, provider)
     .then((result) => {
@@ -41,8 +40,6 @@ export async function SignInWithGoogle() {
 export async function SignInWithFacebook() {
     const provider = new FacebookAuthProvider();
 
-    const auth = getAuth();
-
     return signInWithPopup(auth, provider)
     .then((result) => {
         const additionalUserInfo = getAdditionalUserInfo(result)
@@ -61,9 +58,21 @@ export async function SignInWithFacebook() {
 }
 
 export async function SignInWithEmail(email: string, password: string) {
-    const auth = getAuth();
-    
     return await createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+
+        return user.uid;
+    })
+    .catch((error) => {
+        const errorMessage = error.message;
+
+        alert(errorMessage);
+    });
+}
+
+export async function LogInWithEmail(email: string, password: string) {
+    return await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const user = userCredential.user;
 

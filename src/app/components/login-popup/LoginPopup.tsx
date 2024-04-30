@@ -1,4 +1,6 @@
-import { SignInWithGoogle, SignInWithFacebook } from '../../firebase/SignIn'
+"use client"
+import { useState } from "react";
+import { SignInWithGoogle, SignInWithFacebook, LogInWithEmail } from '../../firebase/SignIn'
 
 // STYLES
 import styles from './login-popup.module.css'
@@ -7,6 +9,8 @@ import styles from './login-popup.module.css'
 import Icon from '../icon/Icon'
 
 export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () => void, onLogin: (result: {uid: string, isNewUser: boolean, email: string}) => void, onRegister: () => void}) {
+    const [emailPassword, setEmailPassword] = useState({email: "", password: ""});
+
     async function SignInWith(provider: 'email' | 'google' | 'facebook') {
         if (provider === 'google') {
             const uid = await SignInWithGoogle();
@@ -14,6 +18,9 @@ export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () 
         } else if (provider === 'facebook') {
             const uid = await SignInWithFacebook();
             if(uid) onLogin(uid);
+        } else if (provider === 'email') {
+            const uid = await LogInWithEmail(emailPassword.email, emailPassword.password);
+            if(uid) onLogin({uid, isNewUser: false, email: emailPassword.email});
         }
     }
 
@@ -31,8 +38,18 @@ export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () 
                     si aún no haz creado una cuenta.
                 </p>
                 
-                <input type="text" placeholder="Correo electrónico" className={styles.input}/>
-                <input type="text" placeholder="Contraseña" className={styles.input}/>
+                <input
+                    type="text"
+                    placeholder="Correo electrónico"
+                    className={styles.input}
+                    onChange={(e) => setEmailPassword({...emailPassword, email: e.target.value})}
+                />
+                <input
+                    type="password"
+                    placeholder="Contraseña"
+                    className={styles.input}
+                    onChange={(e) => setEmailPassword({...emailPassword, password: e.target.value})}
+                />
 
                 <a className={styles.forgotPassword}>¿Olvidaste tu contraseña?</a>
 
@@ -42,7 +59,12 @@ export default function LoginPopup({onClose, onLogin, onRegister}: {onClose: () 
                 >
                     REGISTRATE
                 </button>
-                <button className={styles.loginButton}>INICAR SESIÓN</button>
+                <button
+                    className={styles.loginButton}
+                    onClick={() => SignInWith('email')}
+                >
+                    INICAR SESIÓN
+                </button>
 
                 <div className={styles.divider}>
                     <div className={styles.line}></div>
