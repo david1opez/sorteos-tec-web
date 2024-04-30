@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { auth } from './firebase/SignIn';
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { useRouter } from 'next/navigation';
 
 // COMPONENTS
 import Navbar from "./components/navbar/Navbar";
@@ -12,6 +13,8 @@ import RegisterPopup from "./components/register-popup/RegisterPopup";
 import styles from "./page.module.css";
 
 export default function Home() {
+  const router = useRouter();
+
   const [user, setUser] = useState<any>();
 
   const callAPI = async () => {
@@ -87,6 +90,30 @@ export default function Home() {
           />
         )
       }
+
+      <div style={{display: 'flex', justifyContent: 'space-between', width: '30vw'}}>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <h1>PLINKO</h1>
+          <button onClick={() => router.push('/plinko')}>JUGAR</button>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <h1>RULETA</h1>
+          <button onClick={() => router.push('/ruleta')}>JUGAR</button>
+        </div>
+      </div>
+
+      <div style={{display: 'flex', justifyContent: 'space-between', width: '30vw', marginTop: '5vw'}}>
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <h1>TIENDA</h1>
+          <button onClick={() => router.push('/store?buy=coins')}>JUGAR</button>
+        </div>
+
+        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+          <h1>DASHBOARD</h1>
+          <button onClick={() => router.push('/dashboard')}>JUGAR</button>
+        </div>
+      </div>
     </main>
   );
 }
