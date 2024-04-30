@@ -29,7 +29,7 @@ export default function Home() {
     const data = await res.json();
 
     setUser(data[0]);
-  }
+  } 
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
