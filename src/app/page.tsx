@@ -1,6 +1,5 @@
 "use client"
 import { useState, useEffect } from "react";
-import { Unity, useUnityContext } from "react-unity-webgl";
 import { auth } from './firebase/SignIn';
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -13,13 +12,6 @@ import RegisterPopup from "./components/register-popup/RegisterPopup";
 import styles from "./page.module.css";
 
 export default function Home() {
-  const { unityProvider } = useUnityContext({
-    loaderUrl: "/plinko/build.loader.js",
-    dataUrl: "/plinko/webgl.data",
-    frameworkUrl: "/plinko/build.framework.js",
-    codeUrl: "/plinko/build.wasm",
-  });
-  
   const [user, setUser] = useState<any>();
 
   const callAPI = async () => {
@@ -40,7 +32,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {
+    onAuthStateChanged(auth, async (user) => {Y
       if (user?.uid) {
         console.log(user?.uid);
         const uid = user.uid;
@@ -93,8 +85,6 @@ export default function Home() {
           />
         )
       }
-
-      <Unity unityProvider={unityProvider} style={{ width: 1050, height: 600 }} />
     </main>
   );
 }
