@@ -8,16 +8,17 @@ import { onAuthStateChanged } from "firebase/auth";
 import Navbar from "./components/navbar/Navbar";
 import LoginPopup from "./components/login-popup/LoginPopup";
 import RegisterPopup from "./components/register-popup/RegisterPopup";
+
 // STYLES
 import styles from "./page.module.css";
 
 export default function Home() {
-  // const { unityProvider } = useUnityContext({
-  //   loaderUrl: "../Ruleta Web/build/myunityapp.loader.js",
-  //   dataUrl: "../Ruleta Web/build/myunityapp.data",
-  //   frameworkUrl: "../Ruleta Web/build/myunityapp.framework.js",
-  //   codeUrl: "../Ruleta Web/build/myunityapp.wasm",
-  // });
+  const { unityProvider } = useUnityContext({
+    loaderUrl: "/plinko/build.loader.js",
+    dataUrl: "/plinko/webgl.data",
+    frameworkUrl: "/plinko/build.framework.js",
+    codeUrl: "/plinko/build.wasm",
+  });
   
   const [users, setUsers] = useState<any[]>([]);
   const [user, setUser] = useState<any>();
@@ -96,7 +97,7 @@ export default function Home() {
         )
       }
 
-      {/* <Unity unityProvider={unityProvider} style={{ width: 800, height: 600 }} /> */}
+      <Unity unityProvider={unityProvider} style={{ width: 1050, height: 600 }} />
     </main>
   );
 }
