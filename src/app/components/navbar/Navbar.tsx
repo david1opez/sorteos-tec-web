@@ -9,7 +9,7 @@ import Icon from '../icon/Icon';
 // STYLES
 import styles from "./navbar.module.css";
 
-export default function Navbar({info, onLogin}: {info: any, onLogin?: () => void}) {
+export default function Navbar({info, onLogin}: {info?: any, onLogin?: () => void}) {
     const [bannerTextIndex, setBannerTextIndex] = useState<number>(0);
   
     const BannerTexts = [
