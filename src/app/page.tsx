@@ -32,7 +32,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, async (user) => {Y
+    onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
         console.log(user?.uid);
         const uid = user.uid;
