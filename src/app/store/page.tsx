@@ -2,11 +2,14 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from 'next/navigation';
 import localFont from 'next/font/local'
+import { loadStripe } from '@stripe/stripe-js';
 
 // COMPONENTS
 import Navbar from "../components/navbar/Navbar";
 import Image from "next/image";
 import BuyItemCard from "./components/BuyItemCard";
+import { Elements } from '@stripe/react-stripe-js';
+import { PaymentElement } from '@stripe/react-stripe-js';
 
 // ASSETS
 import coin from '../../../public/Images/coin.png';
@@ -18,6 +21,7 @@ import hearts from '../../../public/Images/hearts.png';
 import bunchOfHearts from '../../../public/Images/bunchOfHearts.png';
 
 const shabo = localFont({ src: '../../../public/schabo.woff' });
+const stripePromise = loadStripe('pk_live_51Ka2NsFUCvKMavOlnyFagBhmDgbE9xdQwupoYgdGJOeny8hmIpEtUlUkVXdAzRsi411BuqMEVsIBmW86852LjHqW00xvfAtfTK');
 
 // STYLES
 import styles from "./page.module.css";
@@ -28,6 +32,25 @@ export default function Store() {
   const searchParams = useSearchParams();
 
   const buy = searchParams.get('buy') == "coins" ? "coins" : 'hearts';
+
+  const [clientSecret, setClientSecret] = useState();
+  const [amount, setAmount] = useState(45);
+  const [name, setName] = useState('David Lopez');
+  const [email, setEmail] = useState('degl0412@gmail.com');
+
+  const [showPayment, setShowPayment] = useState(false);
+
+  useEffect(() => {
+    fetch(`https://sorteos-tec-api.vercel.app/createStripeClient?name=${name}&secret=${email}`)
+    .then(async response => await response.json())
+    .then(data => {
+      fetch(`https://sorteos-tec-api.vercel.app/getClientSecret?amount=${amount}&id=${data.id}`)
+      .then(async response => await response.json())
+      .then(data => {
+        setClientSecret(data.client_secret);
+      });
+    });
+  }, []);
 
   return (
     <main className={`${styles.main} ${shabo.className}`}>
@@ -70,7 +93,7 @@ export default function Store() {
           type={buy}
           quantity={buy == "coins" ? 1000 : 1}
           price={buy == "coins" ? 15 : 15}
-          onBuy={() => {}}
+          onBuy={() => setShowPayment(true)}
         />
 
         <BuyItemCard
@@ -78,7 +101,7 @@ export default function Store() {
           type={buy}
           quantity={buy == "coins" ? 5000 : 3}
           price={buy == "coins" ? 30 : 30}
-          onBuy={() => {}}
+          onBuy={() => setShowPayment(true)}
         />
 
         <BuyItemCard
@@ -86,9 +109,24 @@ export default function Store() {
           type={buy}
           quantity={buy == "coins" ? 10000 : 10}
           price={buy == "coins" ? 55 : 55}
-          onBuy={() => {}}
+          onBuy={() => setShowPayment(true)}
         />
       </div>
+
+      {
+        showPayment && clientSecret && (
+          <Elements
+            stripe={stripePromise}
+            options={{clientSecret}}
+          >
+            <form className={styles.formContainer}>
+              <PaymentElement/>
+              <button className={styles.payButton}>PAGAR</button>
+            </form>
+          </Elements>
+        )
+      }
+
     </main>
   );
 }

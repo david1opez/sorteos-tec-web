@@ -32,7 +32,10 @@ export default function BuyItemCard ({image, type, quantity, price, onBuy}: {ima
             <p className={styles.quantity}>{quantity}</p>
           </div>
   
-          <button className={`${styles.button} ${shabo.className}`}>
+          <button
+            className={`${styles.button} ${shabo.className}`}
+            onClick={() => onBuy()}
+          >
             <p className={styles.price}>$ {price}.00 MXN</p>
           </button>
           
