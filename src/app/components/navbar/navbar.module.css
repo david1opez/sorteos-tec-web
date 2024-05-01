@@ -149,3 +149,27 @@
     background-color: var(--white);
     color: var(--primary);
 }
+
+.profileDropdown {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    position: absolute;
+    margin-top: 1.5vw;
+    margin-left: 1vw;
+    background-color: var(--white);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 7px;
+    padding: 1vw;
+    z-index: 99;
+    width: 10vw;
+}
+
+.profileDropdownButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9vw;
+}

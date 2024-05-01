@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <Navbar/>
+      <Navbar hide/>
 
       <Unity unityProvider={unityProvider} style={{ width: 1050, height: 600 }} />
     </main>

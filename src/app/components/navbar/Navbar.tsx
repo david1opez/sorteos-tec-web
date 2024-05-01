@@ -1,5 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
 // COMPONENTS
 import Image from 'next/image'
@@ -9,8 +10,10 @@ import Icon from '../icon/Icon';
 // STYLES
 import styles from "./navbar.module.css";
 
-export default function Navbar({info, onLogin}: {info?: any, onLogin?: () => void}) {
-    const [bannerTextIndex, setBannerTextIndex] = useState<number>(0);
+export default function Navbar({info, onLogin, hide}: {info?: any, onLogin?: () => void, hide?: boolean}) {
+  const router = useRouter();
+
+  const [bannerTextIndex, setBannerTextIndex] = useState<number>(0);
   
     const BannerTexts = [
       '¡Vive sin preocupaciones! Compra tu boleto y gana $34,000,000 o $188,888 mensuales durante 15 años.',
@@ -45,7 +48,15 @@ export default function Navbar({info, onLogin}: {info?: any, onLogin?: () => voi
   
         <div className={styles.bottom_navbar}>
           {
-            !info && (
+            hide && (
+              <div className={styles.login}>
+                <Icon icon="user" color="#bcdeff" className={styles.wallet_icon}/>
+              </div>
+            )
+          }
+
+          {
+            !info && !hide && (
               <button onClick={() => onLogin && onLogin()} className={styles.login}>
                 <Icon icon="user" color="#1b3589" className={styles.wallet_icon}/>
                 <p className={styles.text}>Iniciar Sesión</p>
@@ -91,10 +102,28 @@ export default function Navbar({info, onLogin}: {info?: any, onLogin?: () => voi
 
           {
             info && (
-              <button className={styles.profile}>
-                  <p className={styles.text}>{info.nombre} {info.apellidoPaterno}</p>
-                  <Icon icon="user" color='#1b3589' className={styles.profile_icon}/>
-              </button>
+              <Dropdown
+                button={() => (
+                  <button className={styles.profile}>
+                    <p className={styles.text}>{info.nombre} {info.apellidoPaterno}</p>
+                    <Icon icon="user" color='#1b3589' className={styles.profile_icon}/>
+                  </button>
+                )}
+                dropdown={() => {
+                  if(!info?.isAdmin) {
+                    return (
+                      <div className={styles.profileDropdown}>
+                        <button
+                          onClick={() => router.push('/dashboard')}
+                          className={styles.profileDropdownButton}
+                        >
+                          Dashboard
+                        </button>
+                      </div>
+                    )
+                  } else return <></>
+                }}
+              />
             )
           }
   

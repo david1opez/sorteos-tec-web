@@ -8,6 +8,12 @@ import { useRouter } from 'next/navigation';
 import Navbar from "./components/navbar/Navbar";
 import LoginPopup from "./components/login-popup/LoginPopup";
 import RegisterPopup from "./components/register-popup/RegisterPopup";
+import Image from "next/image";
+
+// ASSETS
+import cartas from "../../public/Images/cartas.png";
+import ruleta from "../../public/Images/ruleta.png";
+import plinko from "../../public/Images/plinko.png";
 
 // STYLES
 import styles from "./page.module.css";
@@ -16,16 +22,6 @@ export default function Home() {
   const router = useRouter();
 
   const [user, setUser] = useState<any>();
-
-  const callAPI = async () => {
-    try {
-      const res = await fetch("https://sorteos-tec-api.vercel.app/getUsuarios");
-      const data = await res.json();
-      return data;
-    } catch (err) {
-      console.log(err);
-    }
-  }
 
   const HandleLogin = async (uid: string) => {
     const res = await fetch(`https://sorteos-tec-api.vercel.app/getUser?uid=${uid}`);
@@ -91,28 +87,40 @@ export default function Home() {
         )
       }
 
-      <div style={{display: 'flex', justifyContent: 'space-between', width: '30vw'}}>
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <h1>PLINKO</h1>
-          <button onClick={() => router.push('/plinko')}>JUGAR</button>
-        </div>
+      <h1 className={styles.title}>JUEGOS</h1>
+      <div className={styles.gamesContainer}>
+        <button
+          className={styles.gameButton}
+          onClick={() => router.push('/cartas')}
+        >
+          <Image
+            src={cartas}
+            alt=""
+            className={styles.gameImage}
+          />
+        </button>
 
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <h1>RULETA</h1>
-          <button onClick={() => router.push('/ruleta')}>JUGAR</button>
-        </div>
-      </div>
+        <button
+          className={styles.gameButton}
+          onClick={() => router.push('/ruleta')}
+        >
+          <Image
+            src={ruleta}
+            alt=""
+            className={styles.gameImage}
+          />
+        </button>
 
-      <div style={{display: 'flex', justifyContent: 'space-between', width: '30vw', marginTop: '5vw'}}>
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <h1>TIENDA</h1>
-          <button onClick={() => router.push('/store?buy=coins')}>JUGAR</button>
-        </div>
-
-        <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-          <h1>DASHBOARD</h1>
-          <button onClick={() => router.push('/dashboard')}>JUGAR</button>
-        </div>
+        <button
+          className={styles.gameButton}
+          onClick={() => router.push('/plinko')}
+        >
+          <Image
+            src={plinko}
+            alt=""
+            className={styles.gameImage}
+          />
+        </button>
       </div>
     </main>
   );
