@@ -4,4 +4,12 @@
     align-items: center;
     min-height: 100vh;
 }
-  
+
+.gameImage {
+    position: absolute;
+    right: 3vw;
+    top: 10vw;
+    width: 8vw;
+    height: auto;
+    cursor: pointer;
+  }

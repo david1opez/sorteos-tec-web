@@ -7,8 +7,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 
-
-
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 
 const provider = new GoogleAuthProvider();

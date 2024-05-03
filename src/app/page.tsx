@@ -28,12 +28,11 @@ export default function Home() {
     const data = await res.json();
 
     setUser(data[0]);
-  } 
+  }
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
-        console.log(user?.uid);
         const uid = user.uid;
 
         const res = await fetch(`https://sorteos-tec-api.vercel.app/getUser?uid=${uid}`);

@@ -9,6 +9,8 @@ import Icon from '../icon/Icon';
 
 // STYLES
 import styles from "./navbar.module.css";
+import {auth} from "../../firebase/SignIn"
+import { signOut } from 'firebase/auth';
 
 export default function Navbar({info, onLogin, hide}: {info?: any, onLogin?: () => void, hide?: boolean}) {
   const router = useRouter();
@@ -114,18 +116,26 @@ export default function Navbar({info, onLogin, hide}: {info?: any, onLogin?: () 
                   </button>
                 )}
                 dropdown={() => {
-                  if(!info?.isAdmin) {
                     return (
                       <div className={styles.profileDropdown}>
                         <button
-                          onClick={() => router.push('/dashboard')}
+                          onClick={() => signOut(auth).then(() => router.push('/'))}
                           className={styles.profileDropdownButton}
                         >
-                          Dashboard
+                          Cerrar Sesión
                         </button>
+                        {
+                          info?.isAdmin && (
+                            <button
+                                onClick={() => router.push('/dashboard')}
+                                className={styles.profileDropdownButton}
+                              >
+                                Dashboard
+                            </button>
+                          )
+                        }
                       </div>
                     )
-                  } else return <></>
                 }}
               />
             )
