@@ -39,9 +39,13 @@ export default function Navbar({info, onLogin, hide}: {info?: any, onLogin?: () 
           height={28}
           alt="Logo de Sorteos Tec"
           className={styles.logo}
+          onClick={() => router.push('/')}
         />
         
-        <button className={styles.CTA_button}>
+        <button
+          className={styles.CTA_button}
+          onClick={() => window.open('https://www.sorteostec.org/carrito/seleccion-boletos')}
+        >
           <Icon icon="ticket" color="#1b3589" className={styles.ticket}/>
           <p className={styles.text}>Comprar boletos</p>
         </button>

@@ -31,8 +31,6 @@ export default function Home() {
   } 
 
   useEffect(() => {
-    signOut(auth);
-
     onAuthStateChanged(auth, async (user) => {
       if (user?.uid) {
         console.log(user?.uid);
