@@ -89,7 +89,13 @@ export default function Home() {
       <div className={styles.gamesContainer}>
         <button
           className={styles.gameButton}
-          onClick={() => router.push('/cartas')}
+          onClick={() => {
+            if(!user) {
+              alert('Debes iniciar sesión para jugar');
+              return
+            }
+            router.push('/cartas');
+          }}
         >
           <Image
             src={cartas}
@@ -100,7 +106,13 @@ export default function Home() {
 
         <button
           className={styles.gameButton}
-          onClick={() => router.push('/ruleta')}
+          onClick={() => {
+            if(!user) {
+              alert('Debes iniciar sesión para jugar');
+              return
+            }
+            router.push('/ruleta');
+          }}
         >
           <Image
             src={ruleta}
@@ -111,7 +123,13 @@ export default function Home() {
 
         <button
           className={styles.gameButton}
-          onClick={() => router.push('/plinko')}
+          onClick={() => {
+            if(!user) {
+              alert('Debes iniciar sesión para jugar');
+              return
+            }
+            router.push('/plinko');
+          }}
         >
           <Image
             src={plinko}
