@@ -43,7 +43,7 @@ export default function Ruleta() {
 
   useEffect(() => {
     if(user) {
-      sendMessage('BumpSpawn', 'setUser', user?.usuarioID);
+      sendMessage('Ruleta', 'setUser', user?.usuarioID);
     }
   }, [user]);
 

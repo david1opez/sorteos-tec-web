@@ -43,7 +43,7 @@ export default function Cartas() {
 
   useEffect(() => {
     if(user) {
-      sendMessage('BumpSpawn', 'setUser', user?.usuarioID);
+      sendMessage('userManager', 'setUser', user?.usuarioID);
     }
   }, [user]);
 
